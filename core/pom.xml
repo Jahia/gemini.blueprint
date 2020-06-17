@@ -30,10 +30,12 @@
         <dependency>
             <groupId>org.eclipse.gemini.blueprint</groupId>
             <artifactId>gemini-blueprint-io</artifactId>
+            <version>1.0.2.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.gemini.blueprint</groupId>
             <artifactId>gemini-blueprint-mock</artifactId>
+            <version>1.0.2.RELEASE</version>
             <scope>test</scope>
         </dependency>
         <dependency>
