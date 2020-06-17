@@ -21,10 +21,14 @@ import java.lang.reflect.Proxy;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import org.eclipse.gemini.blueprint.util.OsgiFilterUtils;
 import org.eclipse.gemini.blueprint.util.OsgiServiceReferenceUtils;
 import org.eclipse.gemini.blueprint.util.internal.ClassUtils;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 
 /**
@@ -96,6 +100,24 @@ abstract class TrackingUtil {
 					bundleContextInvalidated = true;
 				}
 			}
+            if (bundleContextInvalidated) {
+                log.info("Bundle context is already invalidated. Using gemini-blueprint-core bundle context to lookup the service.");
+                try {
+                    final BundleContext coreContext = FrameworkUtil.getBundle(TrackingUtil.class).getBundleContext();
+                    if (securityOn) {
+                        target = AccessController.doPrivileged(new PrivilegedAction<Object>() {
+                            public Object run() {
+                                return getTarget(coreContext, filter);
+                            }
+                        });
+                    } else {
+                        target = getTarget(coreContext, filter);
+                    }
+                } catch (IllegalStateException ise) {
+                    log.warn("gemini-blueprint-core bundle context is invalidated", ise);
+                    // context has been invalidated
+                }
+            }
 
 			if (target == null) {
 				target = fallbackObject;
@@ -116,7 +138,9 @@ abstract class TrackingUtil {
 		}
 	}
 
-	/**
+    private static final Log log = LogFactory.getLog(TrackingUtil.class);
+
+    /**
 	 * Returns a proxy that on each call seeks the relevant OSGi service and delegates the method invocation to it. In
 	 * case no service is found, the fallback object is used.
 	 * 
