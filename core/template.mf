@@ -1,4 +1,5 @@
 Export-Template: 
+ org.eclipse.gemini.blueprint.*;version="1.0.2.RELEASE",
  org.osgi.service.blueprint.container;version="1.0.0",
  org.osgi.service.blueprint.reflect;version="1.0.0"
 Excluded-Exports: 
@@ -16,7 +17,7 @@ Import-Template:
  org.osgi.service.packageadmin;version=1.2,
  org.osgi.service.startlevel;version=1.0;resolution:=optional,
  org.apache.commons.logging.*;version=${logging.version.range},
- org.eclipse.gemini.blueprint.*;version=${gemini.blueprint.version.range},
+ org.eclipse.gemini.blueprint.io;version="[1.0.2.RELEASE,1.0.2.RELEASE]",
  org.springframework.*;version=${spring.version.range},
  *;resolution:=optional
 Unversioned-Imports: 
