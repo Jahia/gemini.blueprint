@@ -1020,6 +1020,12 @@ Ignored-Existing-Headers:
             </snapshots>
         </pluginRepository>
 
+        <pluginRepository>
+            <id>jahia-public</id>
+            <name>Jahia Public Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/groups/public</url>
+        </pluginRepository>
+
     </pluginRepositories>
 
     <repositories>
