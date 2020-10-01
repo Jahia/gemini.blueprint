@@ -661,8 +661,8 @@ Ignored-Existing-Headers:
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <debug>true</debug>
                     <fork>true</fork>
                 </configuration>
@@ -968,7 +968,7 @@ Ignored-Existing-Headers:
             <name>www.eclipse.org/gemini/blueprint</name>
             <url>http://www.eclipse.org/gemini/blueprint/</url>
         </site>
-        <!-- TODO: Need to participate in Gemini maven repo 
+        <!-- TODO: Need to participate in Gemini maven repo
         <repository>
             <id>zodiac-milestone</id>
             <name>Zodiac Milestone Repository</name>
