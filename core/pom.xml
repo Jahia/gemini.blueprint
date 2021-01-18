@@ -10,7 +10,7 @@
         <version>1.0.2.RELEASE</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <version>1.0.2.RELEASE-jahia2-SNAPSHOT</version>
+    <version>1.0.2.RELEASE-jahia2</version>
     <groupId>org.eclipse.gemini.blueprint</groupId>
     <artifactId>gemini-blueprint-core</artifactId>
     <packaging>jar</packaging>
