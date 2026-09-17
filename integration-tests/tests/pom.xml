@@ -96,8 +96,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.aopalliance</groupId>
-            <artifactId>com.springsource.org.aopalliance</artifactId>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
             <scope>provided</scope>
         </dependency>
 
