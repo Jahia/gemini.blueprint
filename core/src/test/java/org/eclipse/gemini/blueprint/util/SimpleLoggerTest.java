@@ -66,6 +66,7 @@ public class SimpleLoggerTest extends TestCase {
 	}
 
 
+	private PrintStream originalOut, originalErr;
 	private PrintStream outStream, errStream;
 	private PrintStream shouldBeCalled, shouldNotBeCalled;
 	private Log simpleLogger;
@@ -74,6 +75,8 @@ public class SimpleLoggerTest extends TestCase {
 
 
 	protected void setUp() throws Exception {
+		originalOut = System.out;
+		originalErr = System.err;
 		outStream = new AssertivePrintStream(new NullOutputStream());
 		errStream = new AssertivePrintStream(new NullOutputStream());
 		System.setErr(errStream);
@@ -85,8 +88,11 @@ public class SimpleLoggerTest extends TestCase {
 	}
 
 	protected void tearDown() throws Exception {
-		System.setErr(null);
-		System.setOut(null);
+		// Restore the streams this test replaced. Setting them to null left every later test in
+		// the same JVM without a System.err, and each one that parsed an XML document then failed
+		// with a NullPointerException raised inside Xerces' DefaultErrorHandler.
+		System.setErr(originalErr);
+		System.setOut(originalOut);
 		simpleLogger = null;
 		object = null;
 		throwable = null;
